@@ -28,7 +28,6 @@ GamePlayLayer = cc.Layer.extend({
         var timeStep = 0.03;
         this.space.step(timeStep);
     },
-    
     initBG : function(){
         var bg = new cc.TMXTiledMap("res/map/blueBg.tmx");
         this.addChild(bg, 0, GameSceneNodeTag.BatchBackground);
@@ -76,7 +75,6 @@ GamePlayLayer = cc.Layer.extend({
         this.fighter = new Fighter("#gameplay.fighter.png", this.space);
         this.fighter.body.setPos(cc.p(winSize.width / 2, 70));
         this.addChild(this.fighter, 10, GameSceneNodeTag.Fighter);
-
         //创建触摸飞机事件监听器
         this.touchFighterlistener = cc.EventListener.create({
             event : cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -112,8 +110,6 @@ GamePlayLayer = cc.Layer.extend({
         this.updateStatusBarFighter();
 
     },
-
-    //暂停回调
     menuPauseCallback : function (sender) {
         if(effectStatus == 1){
             cc.audioEngine.playEffect("res/sound/Blip.caf");
@@ -161,7 +157,6 @@ GamePlayLayer = cc.Layer.extend({
         this.menu.x = winSize.width / 2;
         this.menu.y = winSize.height / 2;
         this.addChild(this.menu, 20, 1000);
-
     },
 
     //飞机发射子弹

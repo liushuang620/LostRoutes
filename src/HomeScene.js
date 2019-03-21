@@ -43,7 +43,6 @@ var HomeMenuLayer = cc.Layer.extend({
        var customClass = ccext.CustomClass.create();
        var msg = customClass.helloMsg();
        cc.log("customClass's msg is========>>>" + msg)
-
        //创建精灵菜单
        //开始菜单
        //var startSpriteNormal = cc.Sprite.createWithSpriteFrameName("button.start.png");  //JS报错:createWithSpriteFrameName is not a function
@@ -63,7 +62,6 @@ var HomeMenuLayer = cc.Layer.extend({
        var helpSpriteSelected = new cc.Sprite("#button.help-on.png");
        var helpMenuItem = new cc.MenuItemSprite(helpSpriteNormal, helpSpriteSelected, this.menuItemCallback, this);
        helpMenuItem.setTag(HomeMenuActionTypes.MenuItemHelp);
-
 
        /**
         * 创建单一颜色的精灵
@@ -85,7 +83,6 @@ var HomeMenuLayer = cc.Layer.extend({
        menu.y = winSize.height / 2;
        menu.alignItemsVerticallyWithPadding(10);  //垂直排列,间隔10个像素
        this.addChild(menu);
-
        return true;
    },
     

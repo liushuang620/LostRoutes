@@ -78,8 +78,8 @@
         <option value="$PROJECT_DIR$/src/SystemConst.js" />
         <option value="$PROJECT_DIR$/src/HomeScene.js" />
         <option value="$PROJECT_DIR$/src/rank.js" />
-        <option value="$PROJECT_DIR$/src/joystick.js" />
         <option value="$PROJECT_DIR$/project.json" />
+        <option value="$PROJECT_DIR$/src/joystick.js" />
       </list>
     </option>
   </component>
@@ -254,12 +254,12 @@
       <workItem from="1543909040602" duration="300000" />
       <workItem from="1544175073980" duration="1201000" />
       <workItem from="1550213476380" duration="2829000" />
-      <workItem from="1553063408836" duration="14345000" />
+      <workItem from="1553063408836" duration="14350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="83573000" />
+    <option name="totallyTimeSpent" value="83578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="498" y="23" width="1693" height="987" extended-state="0" />

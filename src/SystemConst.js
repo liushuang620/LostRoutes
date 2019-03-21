@@ -138,5 +138,3 @@ RankList = [
         rank : 10
     }
 ];
-
-

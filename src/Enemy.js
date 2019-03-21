@@ -109,3 +109,4 @@ var Enemy = cc.PhysicsSprite.extend({
         this.setVisible(true);
     }
 });
+
