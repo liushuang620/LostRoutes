@@ -1,7 +1,7 @@
 /**
  * Created by tu on 2018/11/22.
  */
-var Figher = cc.PhysicsSprite.extend({
+var Fighter = cc.PhysicsSprite.extend({
     hitPoints : true,
     space : null,
     ctor : function (spriteFrameName, space) {
