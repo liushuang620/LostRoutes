@@ -16,6 +16,25 @@ Ranklayer = cc.Layer.extend({
         this.tableView.setDelegate(this);
         this.addChild(this.tableView);
 
+        //OK菜单
+        var okNormal = new cc.Sprite("#button.ok.png");
+        var okSelected = new cc.Sprite("#button.ok-on.png");
+        var okMenuItem = new cc.MenuItemSprite(okNormal, okSelected, this.menuOkCallback, this);
+        okMenuItem.x = 400;
+        okMenuItem.y = 80;
+
+        var menu = new cc.Menu(okMenuItem);
+        menu.x = 0;
+        menu.y = 0;
+        this.addChild(menu);
+
+    },
+
+    menuOkCallback : function(sender){
+        cc.director.popScene();
+        if(effectStatus == 1){
+            cc.audioEngine.playEffect("res/sound/Blip.caf");
+        }
     },
 
     //设置cell个数
