@@ -78,14 +78,21 @@ RankCell = cc.TableViewCell.extend({
     ctor : function(){
         this._super();
 
-        var render = new cc.RenderTexture(cellSize.width, cellSize.height - 10);
-        render.beginWithClear(248, 76, 100, 120);
-        render.visit();
-        render.end();
+        // var render = new cc.RenderTexture(cellSize.width, cellSize.height - 10);
+        // render.beginWithClear(248, 76, 100, 120);
+        // render.visit();
+        // render.end();
+        //
+        // this.block = new cc.Sprite(render.getSprite().texture);
+        // this.addChild(this.block);
+        // this.block.setAnchorPoint(0, 0);
 
-        this.block = new cc.Sprite(render.getSprite().texture);
-        this.addChild(this.block);
+        //颜色精灵
+        this.block = new cc.Sprite();
         this.block.setAnchorPoint(0, 0);
+        this.block.setColor(cc.color(248, 76, 100, 0));
+        this.block.setTextureRect(cc.rect(0, 0, cellSize.width, cellSize.height - 10));
+        this.addChild(this.block);
 
         this.name = new cc.LabelTTF('Name', "Helvetica", 24);
         this.name.setColor(cc.BLUE);
