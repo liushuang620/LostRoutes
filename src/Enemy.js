@@ -7,6 +7,7 @@ var Enemy = cc.PhysicsSprite.extend({
     hitPoints: 0,		//当前的生命值
     velocity: null,			//速度
     space: null,         //所在物理空间
+    leftLable: 0,     //血条
     ctor : function(enemyType, space){
         var enemFrameName = EnemyName.Enemy_Stone;
         var hitPointsTemp = 0;
@@ -39,6 +40,13 @@ var Enemy = cc.PhysicsSprite.extend({
         cc.log("running......" + enemFrameName);
 
         this.initialHitPoints = hitPointsTemp;
+        this.leftLable = new cc.LabelTTF(this.initialHitPoints, "Arial", 24);
+        this.leftLable.setColor(cc.color(255, 0, 0, 255));
+        this.leftLable.setNormalizedPosition(0.5, 1);
+        this.leftLable.setString(this.initialHitPoints);
+        this.addChild(this.leftLable);
+        this.leftLable.stopAllActions();
+
         this.velocity = velocityTemp;
         this.enemyType = enemyType;
         this.space = space;

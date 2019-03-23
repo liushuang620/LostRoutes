@@ -211,6 +211,7 @@ GamePlayLayer = cc.Layer.extend({
 
     handleBulletCollidingWithEnemy : function(enemy){
         enemy.hitPoints--;
+        enemy.leftLable.setString(enemy.hitPoints);
         if(enemy.hitPoints == 0){
             var node = this.getChildByTag(GameSceneNodeTag.ExplosionParticleSystem);
             if(node){

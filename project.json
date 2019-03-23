@@ -23,6 +23,7 @@
         "src/GameOverScene.js",
         "src/rank.js",
         "src/joystick.js",
-        "src/chat.js"
+        "src/chat.js",
+        "src/skill.js"
     ]
 }
