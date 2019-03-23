@@ -11,9 +11,11 @@ GamePlayLayer = cc.Layer.extend({
         this.menu = null;
         this.score = 0;
         this.scorePlaceholder = 0;
+        this.skill = null;
 
         this.initPhysics();
         this.initBG();
+        this.initSkillLayer();
         this.scheduleUpdate();
         return true;
     },
@@ -26,7 +28,7 @@ GamePlayLayer = cc.Layer.extend({
 
     update : function(dt){
         var timeStep = 0.03;
-        this.space.step(timeStep);
+        this.space.step(timeStep);  //更新物理世界
     },
     initBG : function(){
         var bg = new cc.TMXTiledMap("res/map/blueBg.tmx");
@@ -78,21 +80,28 @@ GamePlayLayer = cc.Layer.extend({
 
         //创建触摸飞机事件监听器
         var self = this;
-        this.touchFighterlistener = cc.EventListener.create({
+        this.fighter.listener = cc.EventListener.create({
             event : cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches : true,
             onTouchBegan : function(touch, event){
-                cc.log("on touch fighter......");
-                //飞机发射炮弹
-                self.schedule(self.shootBullet);
-                return true;
+                var touchPoint = touch.getLocation();
+                touchPoint = self.fighter.convertToNodeSpace(touchPoint);
+                var rect = cc.rect(0, 0, self.fighter.getContentSize().width, self.fighter.getContentSize().height)
+                if(cc.rectContainsPoint(rect, touchPoint)){
+                    cc.log("on touch fighter......");
+                    //飞机发射炮弹
+                    self.schedule(self.shootBullet);
+                    return true;
+                }else{
+                    return false;
+                }
             },
             onTouchMoved : function(touch, event){
                 var target = event.getCurrentTarget();
                 var delta = touch.getDelta();
                 var posX = target.body.getPos().x + delta.x;
                 var posY = target.body.getPos().y + delta.y;
-                target.body.setPos(cc.p(posX, posY));
+                target.setPosition(cc.p(posX, posY));
             },
             onTouchEnded : function(touch, event){
                 self.unschedule(self.shootBullet);
@@ -100,8 +109,7 @@ GamePlayLayer = cc.Layer.extend({
         });
 
         //注册触摸飞机事件监听器
-        cc.eventManager.addListener(this.touchFighterlistener, this.fighter);
-        this.touchFighterlistener.retain();
+        cc.eventManager.addListener(this.fighter.listener, this.fighter);
 
 
         //初始化暂停菜单
@@ -113,6 +121,11 @@ GamePlayLayer = cc.Layer.extend({
         this.updateStatusBarScore();
         this.updateStatusBarFighter();
 
+    },
+
+    initSkillLayer : function(){
+        this.skill = new Skill();
+        this.addChild(this.skill);
     },
     menuPauseCallback : function (sender) {
         if(effectStatus == 1){

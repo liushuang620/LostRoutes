@@ -35,7 +35,6 @@ var Fighter = cc.PhysicsSprite.extend({
     },
 
     setPosition : function(newPos){
-        cc.log("calulate fighter position...");
         var halfWidth = this.getContentSize().width / 2;
         var halfHeight = this.getContentSize().height / 2;
         var posX = newPos.x;

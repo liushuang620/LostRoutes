@@ -77,6 +77,13 @@ EnemyScores = {
     Enemy_Planet : 20
 };
 
+//技能类型
+SkillTyes = {
+    FREEZE : 201,
+    BOMB : 202,
+    ENHANCE : 203
+};
+
 RankList = [
     {
         name : 'Susan',
