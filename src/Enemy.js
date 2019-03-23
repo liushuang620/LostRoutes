@@ -39,13 +39,13 @@ var Enemy = cc.PhysicsSprite.extend({
         this.setVisible(false);
         cc.log("running......" + enemFrameName);
 
+        //血条
         this.initialHitPoints = hitPointsTemp;
         this.leftLable = new cc.LabelTTF(this.initialHitPoints, "Arial", 24);
         this.leftLable.setColor(cc.color(255, 0, 0, 255));
         this.leftLable.setNormalizedPosition(0.5, 1);
         this.leftLable.setString(this.initialHitPoints);
         this.addChild(this.leftLable);
-        this.leftLable.stopAllActions();
 
         this.velocity = velocityTemp;
         this.enemyType = enemyType;
@@ -94,7 +94,7 @@ var Enemy = cc.PhysicsSprite.extend({
         //设置陨石和行星旋转
         switch(this.enemyType){
             case Enemy_Types.Enemy_stone:
-                this.setRotation(this.getRotation() - 0.5);
+                this.setRotation(this.getRotation() - 1.5);
                 break;
             case Enemy_Types.Enemy_Planet:
                 this.setRotation(this.getRotation() + 1);
@@ -114,6 +114,7 @@ var Enemy = cc.PhysicsSprite.extend({
         var x = cc.random0To1() * (winSize.width - this.getContentSize().width) + this.getContentSize().width / 2;
         this.body.setPos(cc.p(x, y));
         this.hitPoints = this.initialHitPoints;
+        this.leftLable.setString(this.initialHitPoints);
         this.setVisible(true);
     }
 });

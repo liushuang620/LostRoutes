@@ -75,12 +75,16 @@ GamePlayLayer = cc.Layer.extend({
         this.fighter = new Fighter("#gameplay.fighter.png", this.space);
         this.fighter.body.setPos(cc.p(winSize.width / 2, 70));
         this.addChild(this.fighter, 10, GameSceneNodeTag.Fighter);
+
         //创建触摸飞机事件监听器
+        var self = this;
         this.touchFighterlistener = cc.EventListener.create({
             event : cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches : true,
             onTouchBegan : function(touch, event){
                 cc.log("on touch fighter......");
+                //飞机发射炮弹
+                self.schedule(self.shootBullet);
                 return true;
             },
             onTouchMoved : function(touch, event){
@@ -89,15 +93,15 @@ GamePlayLayer = cc.Layer.extend({
                 var posX = target.body.getPos().x + delta.x;
                 var posY = target.body.getPos().y + delta.y;
                 target.body.setPos(cc.p(posX, posY));
+            },
+            onTouchEnded : function(touch, event){
+                self.unschedule(self.shootBullet);
             }
         });
 
         //注册触摸飞机事件监听器
         cc.eventManager.addListener(this.touchFighterlistener, this.fighter);
         this.touchFighterlistener.retain();
-
-        //飞机发射炮弹
-        this.schedule(this.shootBullet, 0.2);
 
 
         //初始化暂停菜单
@@ -181,13 +185,13 @@ GamePlayLayer = cc.Layer.extend({
         var spB = bodyB.data;
 
         //炮弹击中敌机 //判断两次是因为取到的对象没有顺序
-        if(spA instanceof Bullet && spB instanceof Enemy && spB.isVisible()){
+        if(spA instanceof Bullet && spB instanceof Enemy && spA.isVisible()){
             spA.setVisible(false);
             this.handleBulletCollidingWithEnemy(spB);
             return false;
         }
 
-        if(spB instanceof Bullet && spA instanceof Enemy && spA.isVisible()){
+        if(spB instanceof Bullet && spA instanceof Enemy && spB.isVisible()){
             spB.setVisible(false);
             this.handleBulletCollidingWithEnemy(spA);
             return false;

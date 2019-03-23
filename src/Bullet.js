@@ -34,7 +34,7 @@ var Bullet = cc.PhysicsSprite.extend({
         if(this.body.getPos().y >= winSize.height){
             this.unscheduleUpdate();
             this.body.data = null;
-            this.removeFromParent();
+            this.removeFromParent(true);
         }
     },
     
@@ -56,4 +56,4 @@ Bullet.create = function (spritFrameName, space) {
     }else{
         return new Bullet(spritFrameName, space);
     }
-}
+};
