@@ -88,7 +88,7 @@ RankCell = cc.TableViewCell.extend({
         // this.block.setAnchorPoint(0, 0);
 
         //颜色精灵
-        this.block = new cc.Sprite("res.bg.png", cc.ra);
+        this.block = new cc.Sprite();
         this.block.setAnchorPoint(0, 0);
         this.block.setColor(cc.color(248, 76, 100, 0));
         this.block.setTextureRect(cc.rect(0, 0, cellSize.width, cellSize.height - 10));  //设置纹理区域,设置contentSize无效

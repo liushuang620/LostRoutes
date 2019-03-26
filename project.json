@@ -24,6 +24,7 @@
         "src/rank.js",
         "src/joystick.js",
         "src/chat.js",
-        "src/skill.js"
+        "src/skill.js",
+        "src/effect_layer.js"
     ]
 }

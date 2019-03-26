@@ -22,6 +22,7 @@ var HomeMenuLayer = cc.Layer.extend({
 
        musicstatus = cc.sys.localStorage.getItem(MUSIC_KEY);
        effectStatus = cc.sys.localStorage.getItem(EFFECT_KEY);
+       effect = new EffectLayer();
 
        var bg = new cc.TMXTiledMap("res/map/redBg.tmx"); //瓦片地图
        this.addChild(bg);
@@ -122,6 +123,18 @@ var HomeMenuLayer = cc.Layer.extend({
         if(musicstatus == 1){
             cc.audioEngine.playMusic("res/sound/homeBg.aifc", true);
         }
+
+
+        cc.spriteFrameCache.addSpriteFrames('res/texture/fish_1101.plist');
+        var spCoin = new cc.Sprite('#fish_1101_01.png');
+        spCoin.retain();
+        this.addChild(spCoin);
+        spCoin.setPosition(100, 100);
+        spCoin.setScale(3);
+        var animate = effect.genAnimate1('fish_1101_anim', 'fish_1101_', 0.09);   //well done
+        // var animate = effect.genAnimate2('fish_1101_anim', 'fish_1101_', 0.09);  //well done
+        spCoin.runAction(cc.repeatForever(animate));
+        cc.log("########");
     },
     onExitTransitionDidStart : function(){
         this._super();
